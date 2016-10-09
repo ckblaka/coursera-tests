@@ -13,14 +13,6 @@
   function AlreadyBoughtController(ShoppingListCheckOffService) {
     var alreadyBoughtList = this;
 
-   /* alreadyBoughtList.itemName = "";
-    alreadyBoughtList.itemQuantity = "";
-
-    alreadyBoughtList.addItem = function () {
-      ShoppingListCheckOffService.addItem(alreadyBoughtList.itemName, alreadyBoughtList.itemQuantity);
-    }*/
-
-
     alreadyBoughtList.items = ShoppingListCheckOffService.getAlreadyBoughtItems();
   }
 
@@ -28,6 +20,18 @@
   ToBuyController.$inject = ['ShoppingListCheckOffService'];
   function ToBuyController(ShoppingListCheckOffService) {
     var toBuy = this;
+
+     /*toBuy.items.name = "";
+     toBuy.items.quantity = "";*/
+
+    toBuy.addItem = function () {
+      if (toBuy.items.name !== "" && angular.isDefined(toBuy.items.quantity) && toBuy.items.quantity !== "") {
+        ShoppingListCheckOffService.addItem(toBuy.items.name, toBuy.items.quantity, toBuy.items);
+        toBuy.items.name = "";
+        toBuy.items.quantity = "";
+      }
+
+    }
 
     toBuy.items = ShoppingListCheckOffService.getItems();
 
