@@ -31,12 +31,12 @@
   <div class="row">
 
     <!-- To Buy List -->
-      <div class="col-md-6" ng-controller='ToBuyController as showList'>
+      <div class="col-md-6" ng-controller='ToBuyController as toBuy'>
         <h2>To Buy:</h2>
         <ul ng-style="{'list-style': 'none', 'padding': 0, 'margin': 0}">
-          <li ng-repeat="item in showList.items">
+          <li ng-repeat="item in toBuy.items">
             Buy {{ item.name }} {{ item.quantity }}
-            <button class="btn btn-default" ng-click="showList.removeItem($index);">
+            <button class="btn btn-default" ng-click="toBuy.removeItem($index);">
               <span class="glyphicon glyphicon-ok"></span> Bought
             </button>
           </li>
@@ -50,21 +50,20 @@
     </div>
 
     <!-- Already Bought List -->
-    <div class="col-md-6" ng-controller='AlreadyBoughtController as itemAdder'>
+    <div class="col-md-6" ng-controller='AlreadyBoughtController as alreadyBoughtList'>
      <h2>Already Bought:</h2>
 
      <ul ng-style="{'list-style': 'none', 'padding': 0, 'margin': 0}">
-       <li ng-repeat="item in  itemAdder.items">
+       <li ng-repeat="item in  alreadyBoughtList.items">
          Bought {{ item.quantity }} {{ item.name }} </li>
      </ul>
      <div class="emptyMessage"
-         ng-if="itemAdder.items.length === 0">
+         ng-if="alreadyBoughtList.items.length === 0">
        Nothing bought yet.
      </div>
     </div>
 
   </div>
-</div>
 
 </body>
 </html>

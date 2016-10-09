@@ -11,27 +11,27 @@
 
   AlreadyBoughtController.$inject = ['ShoppingListCheckOffService'];
   function AlreadyBoughtController(ShoppingListCheckOffService) {
-    var itemAdder = this;
+    var alreadyBoughtList = this;
 
-   /* itemAdder.itemName = "";
-    itemAdder.itemQuantity = "";
+   /* alreadyBoughtList.itemName = "";
+    alreadyBoughtList.itemQuantity = "";
 
-    itemAdder.addItem = function () {
-      ShoppingListCheckOffService.addItem(itemAdder.itemName, itemAdder.itemQuantity);
+    alreadyBoughtList.addItem = function () {
+      ShoppingListCheckOffService.addItem(alreadyBoughtList.itemName, alreadyBoughtList.itemQuantity);
     }*/
 
 
-    itemAdder.items = ShoppingListCheckOffService.getBouItems();
+    alreadyBoughtList.items = ShoppingListCheckOffService.getAlreadyBoughtItems();
   }
 
 
   ToBuyController.$inject = ['ShoppingListCheckOffService'];
   function ToBuyController(ShoppingListCheckOffService) {
-    var showList = this;
+    var toBuy = this;
 
-    showList.items = ShoppingListCheckOffService.getItems();
+    toBuy.items = ShoppingListCheckOffService.getItems();
 
-    showList.removeItem = function (itemIndex) {
+    toBuy.removeItem = function (itemIndex) {
       ShoppingListCheckOffService.removeItem(itemIndex);
     };
   }
@@ -48,28 +48,34 @@
       {name: 'Bread', quantity: 40},
       {name: 'Cacke', quantity: 5}
     ],
-      boughtItems = [];
+      //already bought list
+      alreadyBoughtItems = [];
 
-    service.addItem = function (itemName, quantity) {
+    service.addItem = function (itemName, quantity, obj) {
       var item = {
         name: itemName,
         quantity: quantity
       };
-      items.push(item);
+      obj.push(item);
     };
 
 
 
-    service.removeItem = function (itemIdex) { debugger
-      var byitems = {name : items[itemIdex].name, quantity: items[itemIdex].quantity};
-      boughtItems.push(byitems);
+    service.removeItem = function (itemIndex) {
 
-      items.splice(itemIdex, 1);
+      /*var toBuyItems = {name : items[itemIndex].name, quantity: items[itemIndex].quantity};
+      alreadyBoughtItems.push(toBuyItems);
+      */
+
+      //add itmem to alreadybouhtItems list
+      service.addItem(items[itemIndex].name, items[itemIndex].quantity, alreadyBoughtItems);
+      //suppression de la liste l'indice 
+      items.splice(itemIndex, 1);
     };
 
 
-    service.getBouItems = function () {
-      return boughtItems;
+    service.getAlreadyBoughtItems = function () {
+      return alreadyBoughtItems;
     };
 
     service.getItems = function () {
