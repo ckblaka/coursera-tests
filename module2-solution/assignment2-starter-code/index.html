@@ -30,15 +30,13 @@
 
   <div class="row">
 
-
     <!-- To Buy List -->
       <div class="col-md-6" ng-controller='ToBuyController as toBuy'>
-        <h2>Add to List:</h2>
-        <!-- Add to list -->
+        <!--<h2>Add to List:</h2>
+        &lt;!&ndash; Add to list &ndash;&gt;
         <input type="text" ng-model="toBuy.items.name" placeholder="item name">
         <input type="text" ng-model="toBuy.items.quantity" placeholder="item quantity">
-        <button class="btn btn-default" ng-click="toBuy.addItem(toBuy.items.name, toBuy.items.quantity)">Add To List</button>
-
+        <button class="btn btn-default" ng-click="toBuy.addItem(toBuy.items.name, toBuy.items.quantity)">Add To List</button>-->
         <!--- end add to lit -->
 
         <h2>To Buy:</h2>
@@ -54,23 +52,21 @@
             ng-if="toBuy.items.length === 0">
           Everything is bought!</div>
       </div>
-
-
-    </div>
-
     <!-- Already Bought List -->
     <div class="col-md-6" ng-controller='AlreadyBoughtController as alreadyBoughtList'>
-     <h2>Already Bought:</h2>
+      <h2>Already Bought:</h2>
 
-     <ul ng-style="{'list-style': 'none', 'padding': 0, 'margin': 0}">
-       <li ng-repeat="item in  alreadyBoughtList.items">
-         Bought {{ item.quantity }} {{ item.name }} </li>
-     </ul>
-     <div class="emptyMessage"
-         ng-if="alreadyBoughtList.items.length === 0">
-       Nothing bought yet.
-     </div>
+      <ul ng-style="{'list-style': 'none', 'padding': 0, 'margin': 0}">
+        <li ng-repeat="item in  alreadyBoughtList.items">
+          Bought {{ item.quantity }} {{ item.name }} </li>
+      </ul>
+      <div class="emptyMessage"
+           ng-if="alreadyBoughtList.items.length === 0">
+        Nothing bought yet.
+      </div>
     </div>
+    </div>
+
 
   </div>
 
